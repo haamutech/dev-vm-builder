@@ -34,7 +34,8 @@ apt-get install -y --no-install-recommends \
     libguestfs-tools \
     samba \
     build-essential \
-    git
+    git \
+    htop
 
 # Install docker-compose via pip.
 pip install setuptools
