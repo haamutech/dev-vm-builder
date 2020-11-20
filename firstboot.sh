@@ -43,12 +43,6 @@ done
 # Make SSH to listen only internal network eth1.
 echo "ListenAddress           $internal_ip" >> /etc/ssh/sshd_config
 
-# Open Docker API on port 80 for Portainer access
-mkdir -p /etc/systemd/system/docker.service.d
-echo "[Service]" > /etc/systemd/system/docker.service.d/override.conf
-echo "ExecStart=" >> /etc/systemd/system/docker.service.d/override.conf
-echo "ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:80 -H fd:// --containerd=/run/containerd/containerd.sock" >> /etc/systemd/system/docker.service.d/override.conf
-
 # Restart ssh, samba and docker.
 service ssh restart
 service smbd restart

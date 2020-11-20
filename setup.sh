@@ -4,16 +4,8 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get -y update
+# Update the system.
 apt-get -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" -y upgrade
-
-# Install Docker dependencies.
-apt-get install -y - --no-install-recommends \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
 
 # Add Docker repository.
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -24,22 +16,11 @@ add-apt-repository \
 
 apt-get -y update
 
-# Install needed packages.
+# Install Docker.
 apt-get install -y --no-install-recommends \
     docker-ce \
     docker-ce-cli \
-    containerd.io \
-    python-pip \
-    python-dev \
-    libguestfs-tools \
-    samba \
-    build-essential \
-    git \
-    htop
-
-# Install docker-compose via pip.
-pip install setuptools
-pip install docker-compose
+    containerd.io
 
 # Make a backup of default smb.conf.
 mv /etc/samba/smb.conf /etc/samba/smb.conf.default
