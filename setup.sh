@@ -56,3 +56,8 @@ echo "# Created by setup.sh
 AuthorizedKeysFile      .ssh/authorized_keys
 PasswordAuthentication  no
 Subsystem               sftp    /usr/lib/ssh/sftp-server" > /etc/ssh/sshd_config
+
+# Setup locales.
+locale-gen en_US.UTF-8
+echo "LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8" >> /etc/environment
